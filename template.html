@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+  <meta charset="utf-8">
+  <title>ngSwipe example</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style type="text/css">
+	  body {
+	  padding:0;
+	  margin:0;
+		width: 100%;
+	  }
+    div:nth-child(2n) {background-color: blue; }
+
+	.sample-show-hide {
+		margin: 2em;
+		padding: 2em;
+		border:1px solid black;
+		background:white;
+	}
+	.sample-show-hide.ng-hide-add{
+		-webkit-transition:all linear 0.0s;
+		-moz-transition:all linear 0.0s;
+		-o-transition:all linear 0.0s;
+		transition:all linear 0.0s;
+		display:block!important;
+	}
+
+	.sample-show-hide.ng-hide-remove {
+		-webkit-transition: 0.5s;
+		-moz-transition: 0.5s;
+		-o-transition: 0.5s;
+		transition: 0.5s;
+		display:block!important;
+	}
+
+	.sample-show-hide.ng-hide-add.ng-hide-add-active,
+	.sample-show-hide.ng-hide-remove {
+		opacity:0;
+	}
+	.sample-show-hide.ng-hide-add,
+	.sample-show-hide.ng-hide-remove.ng-hide-remove-active {
+		opacity:1;
+		
+	}
+
+  </style>
+</head>
+<!-- http://docs.angularjs.org/api/ng/directive/ngClass -->
+<body ng-controller="AppController">
+  <div ng-show="!showActions" ng-swipe-left="showActions = true" class="sample-show-hide">
+    <p>Some list content, like an email in the inbox</p>
+  </div>
+  <div ng-show="showActions" ng-swipe-right="showActions = false" class="sample-show-hide">
+    <button ng-click="handleClick()">Say helo</button>
+    <button ng-click="handleClick()">Say helo again</button>
+  </div>
+  <script type="text/javascript" src="angular.js"></script>
+  <script type="text/javascript" src="angular-animate.js"></script>
+  <script type="text/javascript" src="angular-touch.js"></script>
+  
+  <script type="text/javascript">
+  
+  var app = angular.module('app', ['ngTouch','ngAnimate']);
+  var AppController = function($scope) {
+    $scope.showActions= false;
+    $scope.handleClick = function() {
+      alert('Hello team')
+    };
+  };
+  app.controller(AppController);
+  </script>
+</body>
+</html>
